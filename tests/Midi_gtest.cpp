@@ -510,8 +510,8 @@ TEST_F(MidiTest, systemRealTime)
 
 TEST_F(MidiTest, systemExclusive)
 {
-    uint8_t msgs[135];
-    for(int i = 0; i < 135; i++)
+    uint8_t msgs[513];
+    for(int i = 0; i < 513; i++)
     {
         msgs[i] = (uint8_t)i;
     }
@@ -548,17 +548,17 @@ TEST_F(MidiTest, systemExclusive)
 
     EXPECT_FALSE(midi.HasEvents());
 
-    //max len is 128, let's go past that
-    size       = 135;
+    //max len is 512, let's go past that
+    size       = 513;
     event      = ParseAndPopSysex(msgs, size);
     sysexEvent = event.AsSystemExclusive();
     EXPECT_EQ(event.type, SystemCommon);
     EXPECT_EQ(event.sc_type, SystemExclusive);
 
     //max len
-    EXPECT_EQ(sysexEvent.length, 128);
+    EXPECT_EQ(sysexEvent.length, 512);
 
-    for(int i = 0; i < 128; i++)
+    for(int i = 0; i < 512; i++)
     {
         EXPECT_EQ(sysexEvent.data[i], msgs[i]);
     }
