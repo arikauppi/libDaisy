@@ -1,5 +1,5 @@
 // TODO: make this adjustable
-#define SYSEX_BUFFER_LEN 128
+#define SYSEX_BUFFER_LEN 512
 
 namespace daisy
 {
@@ -243,7 +243,7 @@ struct MidiEvent
     int                channel;                      /**< & */
     uint8_t            data[2];                      /**< & */
     uint8_t            sysex_data[SYSEX_BUFFER_LEN]; /**< & */
-    uint8_t            sysex_message_len;
+    uint16_t           sysex_message_len;
     SystemCommonType   sc_type;
     SystemRealTimeType srt_type;
     ChannelModeType    cm_type;
